@@ -8,10 +8,12 @@ from resources.user import UserRegister, GetAllUser
 from resources.item import Item, ItemList
 from resources.store import Store, StoreList
 
+import os
+
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL','sqlite:///data.db')
 app.secret_key = 'jose'
 api = Api(app)
 
